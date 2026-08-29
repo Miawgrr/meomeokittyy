@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Comfortaa:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Quicksand", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Comfortaa", "Quicksand", cursive, sans-serif;
+  --font-display: "Comfortaa", "Quicksand", cursive, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Deep Mystic Gothic Dark Pink Palette (Contrasting with Light Pink) */
+  --color-stone-950: #1c0610; /* Deepest gothic wine/cherry dark pink base */
+  --color-stone-900: #280b18; /* Dark gothic rose panel background */
+  --color-stone-800: #3a1024; /* Rich dark berry borders & dividers */
+  --color-stone-700: #541734; /* Muted gothic rose-purple borders */
+  --color-stone-600: #7a254c; /* Gloomy berry rose text */
+  --color-stone-500: #9f3666; /* Secondary text (soft cherry pink) */
+  --color-stone-400: #c75283; /* Medium light rose highlights */
+  --color-stone-300: #e273a3; /* Bright blossom pink highlights */
+  --color-stone-200: #f4a2c5; /* Ice-rose accents */
+  --color-stone-100: #ffd1e4; /* Frost sweet pink gray */
+}
+
+body {
+  background-color: #ffeef2;
+  color: #4c453e;
+  font-family: var(--font-sans);
+}
+
+/* Custom Cat Paw Cursor */
+*, html, body {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='%23ffffff' stroke='%23fb7185' stroke-width='1.5'><ellipse cx='7.5' cy='6' rx='2' ry='3' transform='rotate(-30 7.5 6)'/><ellipse cx='16.5' cy='6' rx='2' ry='3' transform='rotate(30 16.5 6)'/><ellipse cx='3' cy='12' rx='2' ry='3' transform='rotate(-60 3 12)'/><ellipse cx='21' cy='12' rx='2' ry='3' transform='rotate(60 21 12)'/><path d='M12 11 c -4 0 -7.5 3 -7.5 6 c 0 3.5 3.5 5 7.5 5 c 4 0 7.5 -1.5 7.5 -5 c 0 -3 -3.5 -6 -7.5 -6 z'/></svg>") 11 11, auto !important;
+}
+
+/* Cat Paw Cursor on hover for interactive elements */
+a, button, [role="button"], select, input, textarea, [onclick], .cursor-pointer {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='%23ffb3c1' stroke='%23db2777' stroke-width='1.5'><ellipse cx='7.5' cy='6' rx='2' ry='3' transform='rotate(-30 7.5 6)'/><ellipse cx='16.5' cy='6' rx='2' ry='3' transform='rotate(30 16.5 6)'/><ellipse cx='3' cy='12' rx='2' ry='3' transform='rotate(-60 3 12)'/><ellipse cx='21' cy='12' rx='2' ry='3' transform='rotate(60 21 12)'/><path d='M12 11 c -4 0 -7.5 3 -7.5 6 c 0 3.5 3.5 5 7.5 5 c 4 0 7.5 -1.5 7.5 -5 c 0 -3 -3.5 -6 -7.5 -6 z'/></svg>") 13 13, pointer !important;
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fcf8f2;
+}
+::-webkit-scrollbar-thumb {
+  background: #fcd5ce;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #fbc4b6;
+}
+
+/* Glassmorphism custom helpers matching Sophisticated Dark -> Cute Pastel Cat Light */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(231, 212, 194, 0.5);
+  box-shadow: 0 10px 30px rgba(180, 160, 140, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: #fca5a5;
+  background: #ffffff;
+  box-shadow: 0 12px 25px -5px rgba(253, 164, 175, 0.25);
+}
+
+/* 3D Flip Card classes */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Beautiful smooth hover zoom-in & sparkling animated gradient border effect for character cards */
+@keyframes border-sparkle-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#character-grid [id^="character-card-"] {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Enforce 1:1 circular auto-cropping for character avatar images to prevent distortion */
+#character-grid img,
+[id^="character-card-"] img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 9999px;
+  width: 100%;
+  height: 100%;
+}
+
+#character-grid [id^="character-card-"]::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 1.125rem;
+  background: linear-gradient(
+    135deg,
+    #FFD1DC,
+    #A5D8FF,
+    #FFEC99,
+    #D0BFFF,
+    #FFD1DC
+  );
+  background-size: 300% 300%;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+  animation: border-sparkle-rotate 3.5s linear infinite;
+  box-shadow: 0 0 16px 3px rgba(255, 209, 220, 0.5), 0 0 28px rgba(208, 191, 255, 0.4);
+}
+
+#character-grid [id^="character-card-"]:hover {
+  transform: scale(1.05) translateY(-6px) !important;
+  z-index: 10;
+  border-color: transparent !important;
+}
+
+#character-grid [id^="character-card-"]:hover::before {
+  opacity: 1;
+}
+
+/* Slow spin keyframes and helper classes for the vinyl music disc */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+
+
